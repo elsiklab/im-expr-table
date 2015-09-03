@@ -1,11 +1,19 @@
 var imtables = require('im-tables');
+var utils = require('./util');
+
+
+// check query params
+var param=utils.getParameterByName('transcript_id');
+if(param) {
+    $('#transcript_id').val(param);
+    runQuery(param);
+}
 
 
 
-function runQuery() {
+
+function runQuery(transcript_id) {
     var element = $('#my-id');
-    var formval = $('#transcript_id').val();
-    console.log(formval);
     var service = {root: 'http://www.bovinegenome.org/bovinemine/'};
     var query={
         "model":{
@@ -18,14 +26,13 @@ function runQuery() {
             "Expression.sampleMetadata.tissue"
         ],
         "orderBy":[{"Expression.fpkm":"DESC"}],
-        "where":[{"path":"Expression.isoform","op":"LOOKUP","code":"A","value":formval}]
+        "where":[{"path":"Expression.isoform","op":"LOOKUP","code":"A","value":transcript_id}]
     };
     // Configure options here, using nested notation
     imtables.configure({TableCell: {PreviewTrigger: 'click'}});
     // Or using path names:
     imtables.configure('TableResults.CacheFactor', 20);
 
-    console.log(element);
     // Then load the table (or indeed vice-versa, the table
     // will respond to changes in the options)
     imtables.loadTable(
@@ -36,11 +43,13 @@ function runQuery() {
         function handleTable (table) { $("#message").html("Powered by <a href='http://bovinegenome.org/bovinemine/'>BovineMine</a>"); },
         function reportError (error) { console.error('Could not load table', error); }
     );
-
-    return false;
 }
 
 
 
-$("form").submit(runQuery);
+$("form").submit(function() {
+    var transcript_id = $('#transcript_id').val();
+    runQuery(transcript_id);
+    return false;
+});
 

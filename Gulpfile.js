@@ -9,6 +9,10 @@ gulp.task('build', function() {
     'js/*.js'
   ]).pipe(gulp.dest('dist/js'))
 
+  gulp.src([
+    'css/*.css'
+  ]).pipe(gulp.dest('dist/css'))
+
 
   gulp.src([
     '*.html'
