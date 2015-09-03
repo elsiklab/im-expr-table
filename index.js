@@ -14,7 +14,7 @@ if(param) {
 
 function runQuery(transcript_id) {
     var element = $('#my-id');
-    var service = {root: 'http://www.bovinegenome.org/bovinemine/'};
+    var service = {root: 'http://www.bovinegenome.org/bovinemine'};
     var query={
         "model":{
             "name":"genomic"
