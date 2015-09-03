@@ -777,9 +777,11 @@
 .intermine .im-query-results .im-table-container td.im-result-field:hover {
     background-color: #0088cc;
 }
+/*
 .im-table-container .table td:hover > a.im-cell-link {
     color: white;
 }
+*/
 .intermine input[type="radio"],
 .intermine input[type="checkbox"] {
   margin: 4px 0 0;
