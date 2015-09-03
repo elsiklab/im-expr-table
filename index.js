@@ -33,9 +33,11 @@ function runQuery() {
         {start: 0, size: 25}, // Can be null - all properties are optional.
         {service: service, query: query} // Can also be an imjs.Query object
     ).then(
-        function handleTable (table) { /* ... Do something with the table. */ },
+        function handleTable (table) { $("#message").html("Powered by <a href='http://bovinegenome.org/bovinemine/'>BovineMine</a>"); },
         function reportError (error) { console.error('Could not load table', error); }
     );
+
+    return false;
 }
 
 
