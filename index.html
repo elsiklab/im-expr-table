@@ -4,6 +4,11 @@
 <title>TableQ</title>
 
 <script src="js/jquery-1.11.3.min.js"></script>
+
+<!-- intermine CDN im-tables -->
+<link rel="stylesheet" href="css/imtables.css">
+
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -14,10 +19,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body style="font: 14px helvetica neue, helvetica, arial, sans-serif; margin: 10px">
-<h1>Query gene expression for Bovine</h1>
-<p>Get RNA-seq FPKM, Normalized Count, and Library ID for transcript</p>
+<p>Get FPKM, Normalized read counts, and Library ID and tissue for bovine RNA-seq libraries</p>
 <form>
-<label>Enter transcript ID (NM_174455.3): </label><input id="transcript_id" type="text"></input>
+<label>Enter transcript ID (e.g NM_174455.3): </label><input id="transcript_id" type="text"></input>
 <input type="submit"></input>
 </form>
 <div id="my-id"></div>
