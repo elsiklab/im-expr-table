@@ -1,0 +1,19 @@
+{
+  "name": "tableq",
+  "version": "1.0.0",
+  "description": "Imjs table query",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bioinformatics",
+    "intermine"
+  ],
+  "author": "Colin Diesh",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-browserify": "^0.5.1",
+    "imjs": "^3.14.0"
+  }
+}
