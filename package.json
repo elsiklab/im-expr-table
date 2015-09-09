@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "im-tables": "^2.0.0-beta-42",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3"
   }
 }

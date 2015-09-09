@@ -1,10 +1,11 @@
-var simpleFormatter = require('im-tables/build/utils/simple-formatter');
-
+var simpleFormatter = require('non-escaping-simple-formatter');
+var _ = require('underscore');
 module.exports = simpleFormatter(
     'Expression', // The type of thing this formatter handles
-    ['fpkm'], // The fields it formats
-    function (loc) {
-        console.log("TEST");
-        return "TEST";
+    ['sampleName'], // The fields it formats
+    function (val) {
+        //val['report:uri']="http://google.com";
+        //val['service:base']="http://google.com";
+        return "TEST<br/>TEST";
     }
 );
