@@ -21,10 +21,9 @@ function runQuery(transcript_id) {
         "model":{
             "name":"genomic"
         },"select":[
+            "Expression.sampleName",
             "Expression.fpkm",
             "Expression.normalizedCounts",
-            "Expression.rawCounts",
-            "Expression.sampleName",
             "Expression.sampleMetadata.tissue"
         ],
         "orderBy":[{"Expression.fpkm":"DESC"}],
@@ -38,7 +37,7 @@ function runQuery(transcript_id) {
         formatter,
         'genomic',
         'Expression',
-        ['fpkm']
+        ['sampleName']
     );
 
     // Then load the table (or indeed vice-versa, the table
