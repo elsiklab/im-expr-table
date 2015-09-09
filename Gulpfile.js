@@ -6,10 +6,6 @@ var gulp_browserify = require('gulp-browserify');
 
 function copy_resources() {
   gulp.src([
-    'js/*.js'
-  ]).pipe(gulp.dest('dist/js'))
-
-  gulp.src([
     'css/*.css'
   ]).pipe(gulp.dest('dist/css'))
 
@@ -18,6 +14,9 @@ function copy_resources() {
     '*.html'
   ]).pipe(gulp.dest('dist'))
 }
+
+
+
 gulp.task('build', function() {
   copy_resources();
   gulp.src([

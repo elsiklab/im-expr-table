@@ -1,6 +1,7 @@
 var imtables = require('im-tables');
-var utils = require('./util');
-var formatter = require('./formatter');
+var utils = require('./js/util');
+var formatter = require('./js/formatter');
+var $ = require('jquery');
 
 
 // check query params
