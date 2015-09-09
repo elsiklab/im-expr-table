@@ -1,5 +1,6 @@
 var imtables = require('im-tables');
 var utils = require('./util');
+var formatter = require('./formatter');
 
 
 // check query params
@@ -32,6 +33,12 @@ function runQuery(transcript_id) {
     imtables.configure({TableCell: {PreviewTrigger: 'click'}});
     // Or using path names:
     imtables.configure('TableResults.CacheFactor', 20);
+    imtables.formatting.registerFormatter(
+        formatter,
+        'genomic',
+        'Expression',
+        ['fpkm']
+    );
 
     // Then load the table (or indeed vice-versa, the table
     // will respond to changes in the options)
