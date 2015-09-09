@@ -4,7 +4,7 @@ var gulp_rename = require('gulp-rename');
 var gulp_concat = require('gulp-concat');
 var gulp_browserify = require('gulp-browserify');
 
-gulp.task('build', function() {
+function copy_resources() {
   gulp.src([
     'js/*.js'
   ]).pipe(gulp.dest('dist/js'))
@@ -17,39 +17,32 @@ gulp.task('build', function() {
   gulp.src([
     '*.html'
   ]).pipe(gulp.dest('dist'))
-
-
+}
+gulp.task('build', function() {
+  copy_resources();
   gulp.src([
     'index.js'
   ]).pipe(gulp_browserify())
     .pipe(gulp_uglify())
     .pipe(gulp.dest('dist'));
-
-
   return 1
 });
 
 
-
 gulp.task('debug', function() {
-  gulp.src([
-    'js/*.js'
-  ]).pipe(gulp.dest('dist/js'))
-
-
-  gulp.src([
-    '*.html'
-  ]).pipe(gulp.dest('dist'))
-
-
+  copy_resources();
   gulp.src([
     'index.js'
   ]).pipe(gulp_browserify())
     .pipe(gulp.dest('dist'));
-
-
   return 1
 });
+
+
+gulp.task('watch', function() {
+  gulp.watch('index.js', ['build']);
+});
+
 
 gulp.task('default', ['build']);
 gulp.task('devmode', ['debug']);
