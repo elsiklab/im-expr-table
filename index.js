@@ -1,6 +1,5 @@
-var imtables = require('im-tables');
-var utils = require('./util');
-
+var utils = require('./js/util');
+var formatter = require('./js/formatter');
 
 // check query params
 var param=utils.getParameterByName('transcript_id');
@@ -9,9 +8,6 @@ if(param) {
     runQuery(param);
 }
 
-
-
-
 function runQuery(transcript_id) {
     var element = $('#my-id');
     var service = {root: 'http://www.bovinegenome.org/bovinemine'};
@@ -19,20 +15,29 @@ function runQuery(transcript_id) {
         "model":{
             "name":"genomic"
         },"select":[
+            "Expression.sampleName",
             "Expression.fpkm",
             "Expression.normalizedCounts",
-            "Expression.rawCounts",
-            "Expression.sampleName",
+            "Expression.rawCounts",            
             "Expression.sampleMetadata.tissue"
         ],
         "orderBy":[{"Expression.fpkm":"DESC"}],
         "where":[{"path":"Expression.isoform","op":"LOOKUP","code":"A","value":transcript_id}]
     };
     // Configure options here, using nested notation
-    imtables.configure({TableCell: {PreviewTrigger: 'click'}});
+    imtables.configure({
+        TableCell: {PreviewTrigger: 'click'},
+        TableHeader: {FullPathPopoverEnabled: false}
+        });
     // Or using path names:
-    imtables.configure('TableResults.CacheFactor', 20);
-
+    imtables.configure('TableResults.CacheFactor', 20);    
+    imtables.formatting.registerFormatter(
+        formatter,
+        'genomic',
+        'Expression',
+        ['sampleName']
+    );
+    
     // Then load the table (or indeed vice-versa, the table
     // will respond to changes in the options)
     imtables.loadTable(
@@ -40,16 +45,17 @@ function runQuery(transcript_id) {
         {start: 0, size: 25}, // Can be null - all properties are optional.
         {service: service, query: query} // Can also be an imjs.Query object
     ).then(
-        function handleTable (table) { $("#message").html("Powered by <a href='http://bovinegenome.org/bovinemine/'>BovineMine</a>"); },
+        function handleTable (table) {
+            console.log('Table loaded', table);
+            $("#message").html("Powered by <a href='http://bovinegenome.org/bovinemine/'>BovineMine</a>");
+            },
         function reportError (error) { console.error('Could not load table', error); }
     );
 }
 
-
-
 $("form").submit(function() {
     var transcript_id = $('#transcript_id').val();
-    runQuery(transcript_id);
+    runQuery(transcript_id);    
     return false;
 });
 
