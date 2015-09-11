@@ -6,7 +6,7 @@ var gulp_browserify = require('gulp-browserify');
 
 function copy_resources() {
   gulp.src([
-    'css/*.css'
+    'node_modules/im-tables/dist/main.css'
   ]).pipe(gulp.dest('dist/css'))
 
 
