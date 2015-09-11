@@ -22,7 +22,7 @@ gulp.task('build', function() {
   gulp.src([
     'index.js'
   ]).pipe(gulp_browserify())
-    .pipe(gulp_uglify())
+    //.pipe(gulp_uglify())
     .pipe(gulp.dest('dist'));
   return 1
 });
