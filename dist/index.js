@@ -19,7 +19,6 @@ function runQuery(transcript_id) {
             "Expression.sampleName",
             "Expression.fpkm",
             "Expression.normalizedCounts",
-            "Expression.rawCounts",            
             "Expression.sampleMetadata.tissue"
         ],
         "orderBy":[{"Expression.fpkm":"DESC"}],
@@ -62,9 +61,10 @@ $("form").submit(function() {
 
 
 },{"./js/formatter":2,"./js/util":4}],2:[function(require,module,exports){
-var imtablesFormatter = require('./non-escaping-simple-formatter');
-module.exports = imtablesFormatter(
-     'Expression', // The type of thing this formatter handles
+var simpleFormatter = require('./non-escaping-simple-formatter');
+var _ = require('underscore');
+module.exports = simpleFormatter(
+    'Expression', // The type of thing this formatter handles
     ['sampleName'], // The fields it formats
     function (val) {
         var s=val.sampleName;
@@ -75,12 +75,13 @@ module.exports = imtablesFormatter(
         return s+ " ["+link1+"] [" + link2 + "]";
     }
 );
-},{"./non-escaping-simple-formatter":3}],3:[function(require,module,exports){
+
+},{"./non-escaping-simple-formatter":3,"underscore":8}],3:[function(require,module,exports){
 (function() {
   var callable, compose, escape, getData, _ref,
     __slice = [].slice;
 
-  _ref = require('im-tables/node_modules/underscore'), compose = _ref.compose, escape = _ref.escape;
+  _ref = require('underscore'), compose = _ref.compose, escape = _ref.escape;
 
   getData = require('im-tables/build/utils/ensure-required-data');
 
@@ -102,7 +103,8 @@ module.exports = imtablesFormatter(
   };
 
 }).call(this);
-},{"im-tables/build/utils/ensure-required-data":5,"im-tables/node_modules/underscore":8}],4:[function(require,module,exports){
+
+},{"im-tables/build/utils/ensure-required-data":5,"underscore":8}],4:[function(require,module,exports){
 
 module.exports = {
 
