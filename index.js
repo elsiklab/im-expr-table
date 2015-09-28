@@ -16,11 +16,11 @@ function runQuery(transcript_id) {
             "name":"genomic"
         },"select":[
             "Expression.sampleName",
-            "Expression.fpkm",
+            "Expression.FPKM",
             "Expression.normalizedCounts",
             "Expression.sampleMetadata.tissue"
         ],
-        "orderBy":[{"Expression.fpkm":"DESC"}],
+        "orderBy":[{"Expression.FPKM":"DESC"}],
         "where":[{"path":"Expression.isoform","op":"LOOKUP","code":"A","value":transcript_id}]
     };
     // Configure options here, using nested notation
